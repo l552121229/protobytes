@@ -147,14 +147,18 @@ func (b *BytesReader) ReadByte() (byte, error) {
 
 // ReadIPv4 reads a net.IPAddr with an IPv4 address.
 func (b *BytesReader) ReadIPv4() netip.Addr {
-	ip := netip.AddrFrom4([4]byte((*b)[:4]))
+	var ipBytes [4]byte
+	copy(ipBytes[:], (*b)[:4])
+	ip := netip.AddrFrom4(ipBytes)
 	*b = (*b)[4:]
 	return ip
 }
 
 // ReadIPv6 reads a net.IPAddr with an IPv6 address.
 func (b *BytesReader) ReadIPv6() netip.Addr {
-	ip := netip.AddrFrom16([16]byte((*b)[:16]))
+	var ipBytes [16]byte
+	copy(ipBytes[:], (*b)[:16])
+	ip := netip.AddrFrom16(ipBytes)
 	*b = (*b)[16:]
 	return ip
 }
