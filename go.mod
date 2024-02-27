@@ -1,4 +1,4 @@
-module github.com/l552121229/protobytes
+module github.com/pp-chicken/protobytes
 
 go 1.20
 
